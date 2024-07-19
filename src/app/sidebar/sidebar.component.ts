@@ -87,7 +87,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
   loggout() {
     Swal.fire({
-      title: 'Voulez-vous vraiment vous deconnecter?',
+      title: 'Voulez-vous vraiment vous déconnecter?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Oui',

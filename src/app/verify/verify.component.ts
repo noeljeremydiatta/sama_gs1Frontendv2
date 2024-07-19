@@ -32,7 +32,7 @@ export class VerifyComponent implements OnInit, OnDestroy {
     this.formStudent.get('id_ecole')?.setValue(this.id_ecole);
   }
   isVerification: boolean = true;
-  // textInput: string = 'Vérifier le numéro du dipôlme';
+  // textInput: string = 'Vérifier le numéro du diplôme';
   private studentService = inject(StudentService);
   private suscription: Subscription = new Subscription();
   constructor(private fb: FormBuilder, private localStore: LocalService) {}

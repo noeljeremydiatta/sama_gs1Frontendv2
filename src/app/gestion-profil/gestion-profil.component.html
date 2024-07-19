@@ -54,7 +54,7 @@
         </div>
       </div>
       <div
-        class="bg-[#002C6c] my-5 h-10 w-72 rounded-md flex items-center justify-center text-white font-bold"
+        class="bg-[#002C6c] my-5 h-10 w-72 rounded-md flex items-center justify-center text-white font-medium"
       >
         <span>Identification du profil</span>
       </div>
@@ -87,14 +87,14 @@
                 La civilité est obligatoire
               </div>
               <div *ngIf="civilite!.errors?.['minlength']">
-                Veuillez saisir au minimum 2 caractres
+                Veuillez saisir au minimum 2 caractères
               </div>
             </div>
           </div>
           <div class="div3 relative">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Prénom :</mat-label>
+                <mat-label>Prénom</mat-label>
                 <input matInput formControlName="prenom" placeholder="" />
               </mat-form-field>
             </div>
@@ -106,14 +106,14 @@
                 Le prénom est obligatoire
               </div>
               <div *ngIf="prenom!.errors?.['minlength']">
-                Veuillez saisir au minimum 2 caractéres
+                Veuillez saisir au minimum 2 caractères
               </div>
             </div>
           </div>
           <div class="div4 relative">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Nom :</mat-label>
+                <mat-label>Nom</mat-label>
                 <input matInput formControlName="nom" placeholder="" />
               </mat-form-field>
             </div>
@@ -125,14 +125,14 @@
                 Le nom est obligatoire
               </div>
               <div *ngIf="nom!.errors?.['minlength']">
-                veuillez saisir au minimum 2 caractéres
+                Veuillez saisir au minimum 2 caractères
               </div>
             </div>
           </div>
           <div class="div4 relative">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Email :</mat-label>
+                <mat-label>Email</mat-label>
                 <input matInput formControlName="email" placeholder="" />
               </mat-form-field>
             </div>
@@ -151,7 +151,7 @@
           <div class="div4 relative">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Télephone :</mat-label>
+                <mat-label>Téléphone</mat-label>
                 <input matInput formControlName="telephone" placeholder="" />
               </mat-form-field>
             </div>
@@ -172,7 +172,7 @@
           <div class="div4 relative">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Adresse :</mat-label>
+                <mat-label>Adresse</mat-label>
                 <input matInput formControlName="adresse" placeholder="" />
               </mat-form-field>
             </div>

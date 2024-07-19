@@ -60,7 +60,7 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
       ?.setValue(item.numero_autorisation);
     this.pdfSelected = true;
     this.modalTrue = true;
-    this.text=true;
+    this.text = true;
   }
   modalTrue: boolean = false;
   defaultPdfSrc: string = '';
@@ -70,8 +70,7 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
     private suggestionService: SuggestionService,
     private ecoleService: EcoleService,
     private router: Router,
-    private userService: UserService,
-
+    private userService: UserService
   ) {
     this.suggestions$ = this.type_ecole!.valueChanges.pipe(
       debounceTime(200),
@@ -91,21 +90,21 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
     | Subscribable<undefined>;
   openModal() {
     this.modalTrue = !this.modalTrue;
-    this.text=false;
+    this.text = false;
   }
   close() {
     this.modalTrue = !this.modalTrue;
   }
-  load:boolean = false;
+  load: boolean = false;
   ajout() {
     console.log(this.formValue.value);
-    this.load=true;
+    this.load = true;
     this.subscription.add(
       this.ecoleService
         .add<RootLogin<Ecole>>('ecoles', this.formValue.value)
         .subscribe((ecole: RootLogin<Ecole>) => {
           console.log(ecole);
-          this.load=false;
+          this.load = false;
           if (ecole.code === 200) {
             this.ecoles.unshift(ecole.data!);
             this.formValue.reset();
@@ -120,15 +119,15 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
         })
     );
   }
-  text:boolean = false
+  text: boolean = false;
   modifie() {
-    this.load=true;
+    this.load = true;
     this.subscription.add(
       this.ecoleService
         .add<RootLogin<Ecole>>('ecoles/modifierEcole', this.formValue.value)
         .subscribe((ecole: RootLogin<Ecole>) => {
           console.log(ecole);
-          this.load=false;
+          this.load = false;
           if (ecole.code === 200) {
             const ecoleModifie = this.ecoles.find(
               (ecole) => ecole.id === this.formValue.value.id
@@ -156,7 +155,7 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
       return this.ajout();
     }
   }
-  loading:boolean = true;
+  loading: boolean = true;
   photo_diplome: any;
   photo: any;
   handleFileInput1($event: Event) {
@@ -264,16 +263,16 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
   }
-  add(arg0: number,nom: string) {
+  add(arg0: number, nom: string) {
     this.userService.setIdEcole(arg0);
-    this.userService.setNomEcole(nom)
+    this.userService.setNomEcole(nom);
     sessionStorage.setItem('ecole', '' + arg0);
     this.router.navigate(['detail_school']);
   }
   delete(id: number) {
     Swal.fire({
-      title: 'êtes-vous sûrs?',
-      text: 'Voulez vous vraiment supprimé cet école!',
+      title: 'Êtes-vous sûr?',
+      text: 'Voulez-vous vraiment supprimer cette école!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#002C6c',
@@ -293,7 +292,7 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
                 );
                 this.modalTrue = false;
                 Swal.fire({
-                  title: 'Supprimé!',
+                  title: 'Supprimée!',
                   text: `${resulat.message}`,
                   icon: 'success',
                   confirmButtonColor: '#002C6c',
@@ -321,7 +320,7 @@ export class CreerEcoleComponent implements OnInit, OnDestroy {
         this.ecoleService
           .isExiste<ChekExistGtin>(
             {
-              email: evnt.value
+              email: evnt.value,
             },
             'ecoles/checkEmail'
           )

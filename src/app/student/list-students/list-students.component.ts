@@ -1,6 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { StudentService } from '../../services/student.service';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatSelectChange } from '@angular/material/select';
+import { initFlowbite } from 'flowbite';
+import { NgxPaginationModule } from 'ngx-pagination';
+import {
+  Observable,
+  Subscription,
+  catchError,
+  debounceTime,
+  map,
+  of,
+  switchMap,
+} from 'rxjs';
+import { ListStudentService } from 'src/app/services/list-student.service';
+import { LocalService } from 'src/app/services/local.service';
+import { UserService } from 'src/app/services/user.service';
+import { dateRangeValidator } from 'src/app/shared/dateValidator';
+import { ValidateGtin } from 'src/app/shared/pipes/validateGtin';
+import { ValidateString } from 'src/app/shared/pipes/validateString';
+import Swal from 'sweetalert2';
+import { AngularMaterialModule } from '../../angular-material/angular-material.module';
+import { FiliereService } from '../../filiere.service';
 import {
   ChekExistGtin,
   Civility,
@@ -11,40 +39,12 @@ import {
   RootLogin,
   Student,
 } from '../../models/Root';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { FiltreStudentPipe } from '../../shared/pipes/student-filtre.pipe';
-import {
-  Observable,
-  Subscription,
-  catchError,
-  debounceTime,
-  map,
-  of,
-  switchMap,
-} from 'rxjs';
 import { NiveauService } from '../../niveau.service';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { initFlowbite } from 'flowbite';
-import { AngularMaterialModule } from '../../angular-material/angular-material.module';
-import { SuggestionService } from '../../suggestion.service';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { FiliereService } from '../../filiere.service';
-import Swal from 'sweetalert2';
 import { LoadingService } from '../../services/loading.service';
+import { StudentService } from '../../services/student.service';
 import { FilterEtudiantPipe } from '../../shared/pipes/filter-etudiant.pipe';
-import { MatSelectChange } from '@angular/material/select';
-import { ListStudentService } from 'src/app/services/list-student.service';
-import { LocalService } from 'src/app/services/local.service';
-import { dateRangeValidator } from 'src/app/shared/dateValidator';
-import { ValidateString } from 'src/app/shared/pipes/validateString';
-import { ValidateGtin } from 'src/app/shared/pipes/validateGtin';
-import { UserService } from 'src/app/services/user.service';
+import { FiltreStudentPipe } from '../../shared/pipes/student-filtre.pipe';
+import { SuggestionService } from '../../suggestion.service';
 
 @Component({
   selector: 'app-list-students',
@@ -239,9 +239,8 @@ export class ListStudentsComponent implements OnInit, OnDestroy {
         })
     );
   }
-  loadv:boolean=false;
-  loads:boolean=false;
-
+  loadv: boolean = false;
+  loads: boolean = false;
 
   niveaux$!: Observable<Niveau[]>;
   getNiveau() {
@@ -347,18 +346,18 @@ export class ListStudentsComponent implements OnInit, OnDestroy {
     );
   }
   item!: number;
-  loadValid: boolean=false;
+  loadValid: boolean = false;
   isScrollable: boolean = false;
   valider(student: Student) {
     this.loadValid = true;
-    this.loadv=true;
+    this.loadv = true;
     this.subscription.add(
       this.studentService
         .update<RootLogin<Student>, Student>('etudiants/valider', student)
         .subscribe((student: RootLogin<Student>) => {
           console.log(student);
-          this.loadv=false;
-          this.loadValid=false;
+          this.loadv = false;
+          this.loadValid = false;
           if (student.code == 200) {
             this.userService.getItemNumer.subscribe((etu) => {
               this.item = etu;
@@ -419,10 +418,10 @@ export class ListStudentsComponent implements OnInit, OnDestroy {
   cartItm: number = 0;
 
   delete(id: number) {
-    this.loads=true;
+    this.loads = true;
     Swal.fire({
-      title: 'êtes-vous sûrs?',
-      text: 'Voulez vous vraiment supprimé cet étudiant!',
+      title: 'Êtes-vous sûr?',
+      text: 'Voulez-vous vraiment supprimer cet étudiant!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#002C6c',
@@ -436,7 +435,7 @@ export class ListStudentsComponent implements OnInit, OnDestroy {
             .delete<RootLogin<Login>>(id, 'etudiants/supprimer')
             .subscribe((resulat) => {
               console.log(resulat);
-              this.loads=false;
+              this.loads = false;
               if (resulat.code == 200) {
                 this.etudiants = this.etudiants.filter(
                   (etudiant) => etudiant.id !== id

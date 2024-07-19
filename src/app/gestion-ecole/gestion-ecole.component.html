@@ -8,7 +8,7 @@
       <button>{{ user.ecole.libelle }}</button>
     </div>
     <div
-      class="w-2/3 flex sm:text-2xl text-sm text-white justify-center items-center"
+      class="w-1/3 flex sm:text-xl text-sm text-white justify-center items-center"
     >
       <button>GESTION DES INFORMATIONS DE L'ECOLE</button>
     </div>
@@ -78,7 +78,7 @@
     <div class="w-full xl:w-2/3 flex flex-col">
       <div class="p-3">
         <div
-          class="bgOrange1 mb-5 h-10 w-72 rounded-md flex items-center justify-center text-white font-bold"
+          class="bgOrange1 mb-5 h-10 w-72 rounded-md flex items-center justify-center text-white font-medium"
         >
           <span>Identification de l'école</span>
         </div>
@@ -86,7 +86,7 @@
           <div class="div1">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>ID Système :</mat-label>
+                <mat-label>ID Système:</mat-label>
                 <input
                   matInput
                   formControlName="id_system"
@@ -99,7 +99,7 @@
           <div class="div4 relative">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Nom :</mat-label>
+                <mat-label>Nom de l'école</mat-label>
                 <input matInput formControlName="nom" placeholder="" />
               </mat-form-field>
             </div>
@@ -108,17 +108,17 @@
               class="flex absolute top-14 left-0 text-red-600 error-message"
             >
               <div *ngIf="nom!.errors?.['required']">
-                Le nom est obligatoire
+                Le nom de l'école est obligatoire
               </div>
               <div *ngIf="nom!.errors?.['minlength']">
-                Veuillez saisir minimum 2 caractéres
+                Veuillez saisir au minimum 2 caractères
               </div>
             </div>
           </div>
           <div class="div3 relative">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Date de création :</mat-label>
+                <mat-label>Date de création de l'école</mat-label>
                 <input
                   matInput
                   formControlName="date_creation"
@@ -181,7 +181,7 @@
           <div class="div8 relative">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Email :</mat-label>
+                <mat-label>Email de l'école</mat-label>
                 <input
                   matInput
                   formControlName="email"
@@ -196,7 +196,7 @@
               class="flex absolute top-14 left-0 text-red-600 error-message"
             >
               <div *ngIf="email!.errors?.['email']">
-                veuillez saisir un email valide
+                Veuillez saisir un email valide
               </div>
               <div *ngIf="email!.errors?.['required']">
                 L'email est obligatoire
@@ -212,7 +212,7 @@
           <div class="div7 relative">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Téléphone personnel :</mat-label>
+                <mat-label>Téléphone personnel</mat-label>
                 <input matInput formControlName="telephone" placeholder="" />
               </mat-form-field>
             </div>
@@ -233,7 +233,7 @@
           <div class="div7 relative">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Adresse :</mat-label>
+                <mat-label>Adresse de l'école</mat-label>
                 <input matInput formControlName="adresse" placeholder="" />
               </mat-form-field>
             </div>
@@ -249,7 +249,7 @@
           <div class="div8 relative">
             <div class="flex">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Télephone Bureau :</mat-label>
+                <mat-label>Téléphone du bureau</mat-label>
                 <input
                   matInput
                   formControlName="telephone_bureau"
@@ -265,7 +265,7 @@
               class="flex absolute top-14 left-0 text-red-600 error-message"
             >
               <div *ngIf="telephone_bureau!.errors?.['required']">
-                Le téléphone de bureau est obligatoire
+                Le téléphone du bureau est obligatoire
               </div>
               <div *ngIf="telephone_bureau!.errors?.['phoneNumberFixeSn']">
                 Numéro invalide

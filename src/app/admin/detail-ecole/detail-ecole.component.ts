@@ -44,45 +44,41 @@ export class DetailEcoleComponent implements OnInit {
     this.formValue.get('id')?.patchValue(item.id);
     this.addOrUpdate = true;
     this.modalTrue = true;
-    this.text=true;
-    
+    this.text = true;
   }
 
   idEcole!: number;
   nomEcole!: string;
-  text:boolean = false;
+  text: boolean = false;
 
-
-  mode: string = "Ajouter";
+  mode: string = 'Ajouter';
   basculerMode(): void {
-    this.mode = this.mode === "Ajouter" ? "Modifier" : "Ajouter";
+    this.mode = this.mode === 'Ajouter' ? 'Modifier' : 'Ajouter';
   }
   suggestions$!: Observable<string[]>;
   ngOnInit() {
     this.userService.getIdEcole.subscribe((item) => {
-     // sessionStorage.setItem('ecole', '' + item);
+      // sessionStorage.setItem('ecole', '' + item);
       this.idEcole = item;
     });
     this.userService.getnomEcole.subscribe((item) => {
-       this.nomEcole = item;
-     });
-     if( this.localService.getData('nomEcole')){
-      this.nomEcole= this.localService.getData('nomEcole');
-     }
+      this.nomEcole = item;
+    });
+    if (this.localService.getData('nomEcole')) {
+      this.nomEcole = this.localService.getData('nomEcole');
+    }
     if (sessionStorage.getItem('ecole')) {
       this.idEcole = parseInt(sessionStorage.getItem('ecole')!);
-    }  
-    console.log("idEcole: " + this.idEcole);
-    console.log("nomEcole"+this.nomEcole);
-    
+    }
+    console.log('idEcole: ' + this.idEcole);
+    console.log('nomEcole' + this.nomEcole);
+
     // if (this.localService.getDataItem('idEcole')) {
     //   console.log(this.localService.getDataItem('idEcole'));
     //   this.idEcole = this.localService.getDataItem('idEcole')!;
     // }
     this.formValue.get('ecole_id')?.setValue(this.idEcole);
     this.all();
-   
-    
   }
   constructor(
     private localService: LocalService,
@@ -90,7 +86,7 @@ export class DetailEcoleComponent implements OnInit {
     private ecoleService: EcoleService,
     private userService: UserService,
     public loader: LoadingService,
-    private router: Router,
+    private router: Router
   ) {}
   modalTrue: boolean = false;
   defaultPdfSrc: string = '';
@@ -99,29 +95,28 @@ export class DetailEcoleComponent implements OnInit {
   openModal() {
     this.modalTrue = !this.modalTrue;
     this.addOrUpdate = false;
-    this.text=false;
+    this.text = false;
   }
   close() {
     this.formValue.reset();
     this.photo = '';
-   
-    
+
     this.modalTrue = !this.modalTrue;
   }
-  load:boolean = false;
+  load: boolean = false;
 
-  clicke(){
+  clicke() {
     this.userService.setIdEcole(0);
     this.router.navigate(['admin']);
   }
 
   ajout() {
-    this.load=true;
+    this.load = true;
     this.subscription.add(
       this.ecoleService
         .add<RootLogin<Utilisateur>>('users', this.formValue.value)
         .subscribe((ecole: RootLogin<Utilisateur>) => {
-          this.load=false
+          this.load = false;
           if (ecole.code === 200) {
             this.users.unshift(ecole.data!);
             this.formValue.reset();
@@ -133,18 +128,17 @@ export class DetailEcoleComponent implements OnInit {
               confirmButtonColor: '#002C6c',
             });
           }
-         
         })
     );
   }
   modifie() {
     console.log(this.formValue.value);
-    this.load=true;
+    this.load = true;
     this.subscription.add(
       this.ecoleService
         .add<RootLogin<Utilisateur>>('users/modifierUser', this.formValue.value)
         .subscribe((ecole: RootLogin<Utilisateur>) => {
-          this.load=false;
+          this.load = false;
           if (ecole.code === 200) {
             const utilisateurModifie = this.users.find(
               (user) => user.id === this.formValue.value.id
@@ -184,7 +178,6 @@ export class DetailEcoleComponent implements OnInit {
     { id: 2, libelle: 'Super admin' },
     { id: 3, libelle: 'Responsable pédagogique' },
   ];
-
 
   formValue: FormGroup = this.fb.group({
     id: [''],
@@ -253,16 +246,15 @@ export class DetailEcoleComponent implements OnInit {
     return this.ecoleService
       .byId<Root<Utilisateur>>(this.idEcole, 'users/usersByEcole')
       .subscribe((data) => {
-        this.loadingData=false;
+        this.loadingData = false;
         this.users = data.data;
       });
-     
   }
 
   delete(id: number) {
     Swal.fire({
-      title: 'êtes-vous sûrs?',
-      text: 'Voulez vous vraiment supprimé cet utilisateur!',
+      title: 'Êtes-vous sûr?',
+      text: 'Voulez-vous vraiment supprimer cet utilisateur?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#002C6c',

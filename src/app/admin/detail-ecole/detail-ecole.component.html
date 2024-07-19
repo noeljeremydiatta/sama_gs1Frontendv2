@@ -3,7 +3,7 @@
     class="overflow-hidden relative flex flex-col items-center justify-center"
   >
     <div
-      class="mb-2 flex items-center justify-center text-xl p-2 rounded-md text-white font-bold primarycolor"
+      class="mb-2 flex items-center justify-center text-xl p-2 rounded-md text-white font-medium primarycolor"
     >
       <svg
         class="w-6 h-6 text-gray-800 dark:text-white"
@@ -44,7 +44,7 @@
       </button>
       <button
         (click)="openModal()"
-        class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="flex items-center justify-center text-white bg-orange-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
         <svg
@@ -68,9 +68,9 @@
 
     <div class="container">
       <div>
-        <h2 class="text-2xl font-semibold leading-tight">
+        <h3 class="text-xl font-medium leading-tight">
           Liste des utilisateurs
-        </h2>
+        </h3>
       </div>
       <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
         <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -246,7 +246,7 @@
             class="text-center flex my-2 flex-row justify-center items-center"
           >
             <div>
-              <label for="" class="primarycolorText font-medium">PHOTO</label>
+              <label for="" class="primarycolorText font-bold">PHOTO</label>
               <div class="mt-2">
                 <img
                   [src]="photo"
@@ -296,7 +296,7 @@
                     La civilité est obligatoire
                   </div>
                   <div *ngIf="civilite!.errors?.['minlength']">
-                    veuillez saisir minimum 2 caractères
+                    Veuillez saisir au minimum 2 caractères
                   </div>
                 </div>
               </div>
@@ -326,7 +326,7 @@
                     Le rôle est obligatoire
                   </div>
                   <div *ngIf="role_id!.errors?.['minlength']">
-                    veuillez saisir minimum 2 caractères
+                    Veuillez saisir au minimum 2 caractères
                   </div>
                 </div>
               </div>
@@ -335,32 +335,28 @@
           <div class="flex flex-col md:flex-row justify-between px-2">
             <div class="flex relative w-[45%]">
               <mat-form-field class="example-full-width" style="width: 100%">
-                <mat-label>Prénom :</mat-label>
-                <input
-                  formControlName="prenom"
-                  matInput
-                  placeholder="Ex. pat@example.com"
-                />
+                <mat-label>Prénom</mat-label>
+                <input formControlName="prenom" matInput placeholder="Prénom" />
               </mat-form-field>
               <div
                 *ngIf="prenom!.invalid && (prenom!.dirty || prenom!.touched)"
                 class="flex absolute top-14 left-0 text-red-600 error-message"
               >
                 <div *ngIf="prenom!.errors?.['required']">
-                  Le nom de l'école est obligatoire
+                  Le prénom est obligatoire
                 </div>
                 <div *ngIf="prenom!.errors?.['minlength']">
-                  Minimum 3 caractéres
+                  Minimum 3 caractères
                 </div>
                 <div *ngIf="prenom!.errors?.['maxlength']">
-                  Maximum 50 caractéres
+                  Maximum 50 caractères
                 </div>
               </div>
             </div>
             <div class="relative w-[45%]">
               <div>
                 <mat-form-field class="flex-shrink-0" style="width: 100%">
-                  <mat-label>Nom :</mat-label>
+                  <mat-label>Nom</mat-label>
                   <input matInput formControlName="nom" placeholder="nom" />
                 </mat-form-field>
               </div>
@@ -381,7 +377,7 @@
             <div class="relative w-[45%]">
               <div>
                 <mat-form-field class="flex-shrink-0" style="width: 100%">
-                  <mat-label>Numéro téléphone :</mat-label>
+                  <mat-label>Numéro de téléphone</mat-label>
                   <input matInput formControlName="telephone" placeholder="" />
                 </mat-form-field>
               </div>
@@ -392,7 +388,7 @@
                 class="flex absolute top-14 left-0 text-red-600 error-message"
               >
                 <div *ngIf="telephone!.errors?.['required']">
-                  Le numéro de téléphone personnel est obligatoire
+                  Le numéro de téléphone est obligatoire
                 </div>
                 <div *ngIf="telephone!.errors?.['ValidateDateRange']">
                   Le numéro est invalide
@@ -401,7 +397,7 @@
             </div>
             <div class="flex relative w-[45%]">
               <mat-form-field class="example-full-width" style="width: 100%">
-                <mat-label>Email :</mat-label>
+                <mat-label>Email</mat-label>
                 <input
                   formControlName="email"
                   matInput
@@ -414,7 +410,7 @@
                 class="flex absolute top-14 left-0 text-red-600 error-message"
               >
                 <div *ngIf="email!.errors?.['required']">
-                  L'email de l'école est obligatoire
+                  L'email est obligatoire
                 </div>
                 <div *ngIf="email!.errors?.['email']">L'email est invalide</div>
               </div>
@@ -429,7 +425,7 @@
           <div class="flex flex-col md:flex-row justify-between px-2">
             <div class="relative w-[45%]">
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Addresse :</mat-label>
+                <mat-label>Adresse</mat-label>
                 <input matInput formControlName="adresse" placeholder="" />
               </mat-form-field>
               <div
@@ -437,19 +433,19 @@
                 class="flex absolute top-14 left-0 text-red-600 error-message"
               >
                 <div *ngIf="adresse!.errors?.['required']">
-                  L'adresse de l'école est obligatoire
+                  L'adresse est obligatoire
                 </div>
                 <div *ngIf="adresse!.errors?.['minlength']">
-                  Minimum 5 caractéres
+                  Minimum 5 caractères
                 </div>
                 <div *ngIf="adresse!.errors?.['maxlength']">
-                  Maximum 100 caractéres
+                  Maximum 100 caractères
                 </div>
               </div>
             </div>
             <div class="div10 relative w-[45%]">
               <mat-form-field class="example-full-width" style="width: 100%">
-                <mat-label>Password:</mat-label>
+                <mat-label>Mot de passe</mat-label>
                 <input matInput formControlName="password" placeholder="" />
               </mat-form-field>
               <div
@@ -459,7 +455,7 @@
                 class="flex absolute top-14 left-0 text-red-600 error-message"
               >
                 <div *ngIf="password!.errors?.['required']">
-                  Le password est obligatoire
+                  Le mot de passe est obligatoire
                 </div>
               </div>
             </div>

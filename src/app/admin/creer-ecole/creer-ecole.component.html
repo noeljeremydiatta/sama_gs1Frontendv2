@@ -1,7 +1,7 @@
 <div class="overflow-auto flex flex-col items-center justify-center">
   <button
     (click)="openModal()"
-    class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    class="flex items-center justify-center text-white bg-orange-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     type="button"
   >
     <svg
@@ -19,12 +19,12 @@
         d="M5 12h14m-7 7V5"
       />
     </svg>
-    Créer une nouvelle entité
+    Créer une nouvelle école
   </button>
 
   <div class="container">
     <div>
-      <h2 class="text-2xl font-semibold leading-tight">Listes des entités</h2>
+      <h3 class="text-xl font-semibold leading-tight">Liste des entités</h3>
     </div>
     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
       <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -210,7 +210,7 @@
       <form [formGroup]="formValue" (ngSubmit)="click()">
         <div class="text-center flex my-2 flex-row justify-center items-center">
           <div>
-            <label for="" class="primarycolorText font-bold">LOGO</label>
+            <label for="" class="primarycolorText font-semibold">LOGO</label>
             <div class="mt-2">
               <img
                 [src]="photo"
@@ -221,7 +221,7 @@
             <div class="flex flex-col md:flex-row">
               <label
                 for="fileInput"
-                class="flex cursor-pointer justify-center items-center px-3 py-2 primarycolor text-white rounded-md font-medium-xs tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-400 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 ml-3"
+                class="flex cursor-pointer justify-center items-center px-3 py-2 primarycolor text-white rounded-md font-medium text-xs tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-400 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 ml-3"
               >
                 Charger une photo
                 <input
@@ -237,11 +237,11 @@
         <div class="flex flex-col md:flex-row justify-between px-2">
           <div class="flex relative w-[45%]">
             <mat-form-field class="example-full-width" style="width: 100%">
-              <mat-label>Ecole :</mat-label>
+              <mat-label>Ecole</mat-label>
               <input
                 formControlName="libelle"
                 matInput
-                placeholder="Ex. pat@example.com"
+                placeholder="Ex. ISM Dakar"
               />
             </mat-form-field>
             <div
@@ -252,22 +252,22 @@
                 Le nom de l'école est obligatoire
               </div>
               <div *ngIf="libelle!.errors?.['minlength']">
-                Minimum 3 caractéres
+                Minimum 3 caractères
               </div>
               <div *ngIf="libelle!.errors?.['maxlength']">
-                Maximum 50 caractéres
+                Maximum 50 caractères
               </div>
             </div>
           </div>
           <div class="relative w-[45%]">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Date de création :</mat-label>
+                <mat-label>Date de création</mat-label>
                 <input
                   matInput
                   type="date"
                   formControlName="date_creation"
-                  placeholder="Date d'obtention"
+                  placeholder="Date de fondation"
                 />
               </mat-form-field>
             </div>
@@ -279,7 +279,7 @@
               class="flex absolute top-14 left-0 text-red-600 error-message"
             >
               <div *ngIf="date_creation!.errors?.['required']">
-                La date de création est obligatoire
+                La date est obligatoire
               </div>
               <div *ngIf="date_creation!.errors?.['ValidateDateRange']">
                 La date saisie est invalide
@@ -291,7 +291,7 @@
         <div class="flex flex-col md:flex-row justify-between px-2">
           <div class="flex relative w-[45%]">
             <mat-form-field class="example-full-width" style="width: 100%">
-              <mat-label>Email :</mat-label>
+              <mat-label>Email</mat-label>
               <input
                 formControlName="email"
                 matInput
@@ -318,12 +318,12 @@
           <div class="relative w-[45%]">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Numéro personnel :</mat-label>
+                <mat-label>Numéro personnel</mat-label>
                 <input
                   matInput
                   type="text"
                   formControlName="telephone_personnel"
-                  placeholder=""
+                  placeholder="+221778209982"
                 />
               </mat-form-field>
             </div>
@@ -335,7 +335,7 @@
               class="flex absolute top-14 left-0 text-red-600 error-message"
             >
               <div *ngIf="telephone_personnel!.errors?.['required']">
-                Le numéro de téléphone personnel est obligatoire
+                Le numéro personnel est obligatoire
               </div>
               <div *ngIf="telephone_personnel!.errors?.['ValidateDateRange']">
                 Le numéro est invalide
@@ -347,8 +347,12 @@
         <div class="flex flex-col md:flex-row justify-between px-2">
           <div class="relative w-[45%]">
             <mat-form-field class="flex-shrink-0" style="width: 100%">
-              <mat-label>Adresse :</mat-label>
-              <input matInput formControlName="adresse" placeholder="" />
+              <mat-label>Adresse</mat-label>
+              <input
+                matInput
+                formControlName="adresse"
+                placeholder="Ex: Ouest Foire"
+              />
             </mat-form-field>
             <div
               *ngIf="adresse!.invalid && (adresse!.dirty || adresse!.touched)"
@@ -358,10 +362,10 @@
                 L'adresse de l'école est obligatoire
               </div>
               <div *ngIf="adresse!.errors?.['minlength']">
-                Minimum 5 caractéres
+                Minimum 5 caractères
               </div>
               <div *ngIf="adresse!.errors?.['maxlength']">
-                Maximum 50 caractéres
+                Maximum 50 caractères
               </div>
             </div>
           </div>
@@ -407,7 +411,7 @@
         <div class="flex flex-col md:flex-row justify-between px-2">
           <div class="div10 relative w-[45%]">
             <mat-form-field class="example-full-width" style="width: 100%">
-              <mat-label>Type d'école :</mat-label>
+              <mat-label>Type d'école</mat-label>
               <input
                 matInput
                 formControlName="type_ecole"
@@ -442,11 +446,11 @@
           <div class="div9 relative w-[45%]">
             <div>
               <mat-form-field class="flex-shrink-0" style="width: 100%">
-                <mat-label>Numéro Bureau :</mat-label>
+                <mat-label>Numéro du bureau</mat-label>
                 <input
                   matInput
                   formControlName="telephone_bureau"
-                  placeholder="Matricule"
+                  placeholder="Ex: +221338209982"
                 />
               </mat-form-field>
             </div>
@@ -458,7 +462,7 @@
               class="flex absolute top-14 left-0 text-red-600 error-message"
             >
               <div *ngIf="telephone_bureau!.errors?.['required']">
-                Le téléphone de bureau est obligatoire
+                Le numéro du bureau est obligatoire
               </div>
               <div *ngIf="telephone_bureau!.errors?.['phoneNumberFixeSn']">
                 Numéro invalide

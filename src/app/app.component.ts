@@ -8,7 +8,7 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'sama_gs1';
+  title = 'SAMA GS1';
   constructor(public roter: Router) {}
   ngOnInit(): void {
     initFlowbite();
